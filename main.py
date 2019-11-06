@@ -9,21 +9,19 @@ class main:
 
 
     def __init__(self, _loop=100):
-        
         self._loop = _loop
-        self.query = RequestsToDB.config_data.get("QUERY", "Query")
+        self.query = RequestsToDB().config_data.get("QUERY", "Query")
         
-    def loop_query_pool(_message="pool"):
-        # _query = 
-        for _num in self._loop:
-            pg_query_pool(_query=str(self.query).replace("?", _message + str(_num)))
+    def loop_query_pool(self, _message="pool"):
+        for _num in range(self._loop):
+            pg_query_pool(_query=str(self.query).replace("?", f"'{_message} - {str(_num)}'"))
             
-    def loop_query(_message="basic"):
-        for _num in self._loop:
-            pg_query(_query=str(self.query).replace("?", _message + str(_num)))
+    def loop_query(self, _message="basic"):
+        for _num in range(self._loop):
+            pg_query(_query=str(self.query).replace("?", f"'{_message} - {str(_num)}'"))
 
 if __name__ == "__main__":
-    mainClass = main(_loop=10000)
-    mainClass.loop_query_pool()
-    mainClass.loop_query()
+    main = main(_loop=10000)
+    main.loop_query_pool()
+    main.loop_query()
     

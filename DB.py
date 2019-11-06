@@ -1,11 +1,13 @@
 import psycopg2
+from psycopg2 import pool
+from RequestsToDB import RequestsToDB
 
 def pg_query( _query, 
-            user = requestsToTracker().config_data.get("DB", "user"), 
-            password = requestsToTracker().config_data.get("DB", "password"),
-            host = requestsToTracker().config_data.get("DB", "host"),
-            port = requestsToTracker().config_data.get("DB", "port"),
-            database = requestsToTracker().config_data.get("DB", "database"),
+            user = RequestsToDB().config_data.get("DB", "user"), 
+            password = RequestsToDB().config_data.get("DB", "password"),
+            host = RequestsToDB().config_data.get("DB", "host"),
+            port = RequestsToDB().config_data.get("DB", "port"),
+            database = RequestsToDB().config_data.get("DB", "database"),
             _printing = False,
             _return = False
              ):
@@ -44,26 +46,26 @@ def pg_query( _query,
             
 def pg_query_pool( 
             _query, 
-            user = requestsToTracker().config_data.get("DB", "user"), 
-            password = requestsToTracker().config_data.get("DB", "password"),
-            host = requestsToTracker().config_data.get("DB", "host"),
-            port = requestsToTracker().config_data.get("DB", "port"),
-            database = requestsToTracker().config_data.get("DB", "database"),
+            user = RequestsToDB().config_data.get("DB", "user"), 
+            password = RequestsToDB().config_data.get("DB", "password"),
+            host = RequestsToDB().config_data.get("DB", "host"),
+            port = RequestsToDB().config_data.get("DB", "port"),
+            database = RequestsToDB().config_data.get("DB", "database"),
             _printing = False,
             _return = False
              ):
-    from psycopg2 import pool
+
     try:
         postgreSQL_pool = psycopg2.pool.SimpleConnectionPool(
                                                              1, 
                                                              20,
-                                                             user,
-                                                             password,
-                                                             host,
-                                                             port,
-                                                             database
+                                                             user=user,
+                                                             password=password,
+                                                             host=host,
+                                                             port=port,
+                                                             database=database
                                                              )
-        
+        print(postgreSQL_pool)
         if(postgreSQL_pool):
             print("Connection pool created successfully")
 
