@@ -1,5 +1,3 @@
-
-
 CREATE TABLE public.T_TEST
 (
     id SERIAL NOT NULL,
