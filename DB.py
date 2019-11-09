@@ -1,6 +1,7 @@
 import psycopg2
 from psycopg2 import pool
 from RequestsToDB import RequestsToDB
+import Decorator
 
 def pg_query( _query, 
             user = RequestsToDB().config_data.get("DB", "user"), 
@@ -9,7 +10,9 @@ def pg_query( _query,
             port = RequestsToDB().config_data.get("DB", "port"),
             database = RequestsToDB().config_data.get("DB", "database"),
             _printing = False,
-            _return = False
+            _return = False,
+            _save = False
+
              ):
     
     if _printing:
@@ -44,7 +47,8 @@ def pg_query( _query,
             connection.close()
             if _printing:
                 print("PostgreSQL connection is closed")
-    
+
+@Decorator.save_resp_time
 def pg_query_pool( 
             _query, 
             user = RequestsToDB().config_data.get("DB", "user"), 
@@ -93,10 +97,8 @@ def pg_query_pool(
         
         if _printing:
             print("successfully connect to PostgreSQL ")
-            pass
             if(postgreSQL_pool):
                 print("Connection pool created successfully")
-                pass
         if _return:
             rows = cursor.fetchall()
             if len(rows)>0:
@@ -110,7 +112,6 @@ def pg_query_pool(
     finally:
         if (postgreSQL_pool):
             postgreSQL_pool.closeall
-            pass
         if _printing:
             print("PostgreSQL connection pool is closed")
     
