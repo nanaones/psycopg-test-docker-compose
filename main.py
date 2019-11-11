@@ -3,6 +3,7 @@ from DB import pg_query, pg_query_pool
 import Decorator
 
 import time
+import sys
 
 class MainClass:
 
@@ -10,13 +11,15 @@ class MainClass:
         self._loop = _loop
         self.query = RequestsToDB().config_data.get("SQL", 
                                                     "INSERT")
+        self.log_save_path = RequestsToDB().config_data.get("LOG", 
+                                                    "logSavePath")
         
     @Decorator.time_print
     def loop_query_pool(self, _message="pool"):
         for _num in range(self._loop):
             pg_query_pool(_query=str(self.query).replace("?", 
                                                          f"'{_message} - {str(_num)}'"),
-                                                         _save = True, _log_save_folder_path="./log/")        
+                                                         _save = True, _log_save_folder_path=self.log_save_path)        
 
     @Decorator.time_print
     def loop_query(self, _message="basic"):
@@ -27,7 +30,7 @@ class MainClass:
 
 
 if __name__ == "__main__":
-    main = MainClass(_loop=1000)
+    main = MainClass(_loop=int(sys.argv[1]))
     main.loop_query_pool()
     main.loop_query()
     

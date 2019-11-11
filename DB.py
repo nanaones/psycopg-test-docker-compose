@@ -59,6 +59,7 @@ def pg_query_pool(
             _printing = False,
             _return = False
              ):
+    postgreSQL_pool = False
 
     if _printing:
         print(user)
@@ -78,7 +79,6 @@ def pg_query_pool(
         #                                                      port=port,
         #                                                      database=database
         #                                                      )
-
 
         postgreSQL_pool = psycopg2.pool.SimpleConnectionPool(
                                                              1, 
