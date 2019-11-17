@@ -1,18 +1,6 @@
 version: "3"
 services:
-  db-fluentd:
-    build: 
-      context: .
-      # dockerfile: ./fluentd/dockerfile
-    image: nanaones/fluentd:0.0.2
-      
-    volumes:
-      - ./fluentd:/fluentd/etc
-      - ./logs:/logs
-    networks:
-      - check-time   
-
-  DB-elasticsearch:
+  elasticsearch:
     image: elasticsearch:7.4.2
     environment:
       - discovery.type=single-node
@@ -25,6 +13,16 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
+    networks:
+      - check-time
+
+  db-fluentd:
+    image: nanaones/fluentd:0.0.4
+    volumes:
+      - ./fluentd:/fluentd/etc
+      - ../log:/logs
+    links:
+      - "elasticsearch"
     networks:
       - check-time
 
@@ -48,17 +46,13 @@ services:
       - check-time
 
   python-main:
-    build:
-      context: .
-      dockerfile: ../dockerfile
-    # image: nanaones/psycopg-test:0.0.2
+    image: nanaones/psycopg-test:0.0.4
     volumes:
       - ./logs:/logs
+    environment:
+      loop: 10
     networks:
       - check-time
-
-
-
 
 networks:
   check-time:
