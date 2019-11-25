@@ -1,0 +1,8 @@
+FROM nanaones/psycopg-test:0.0.2
+
+ENV loop 1
+ENV CONFIGPATH /psycopg-test/config/config.ini
+
+ADD ./psycopg-test/start /run
+ADD ./psycopg-test/config  /run/config
+CMD ["bash", "/run/start.sh"]
