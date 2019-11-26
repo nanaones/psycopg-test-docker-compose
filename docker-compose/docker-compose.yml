@@ -47,7 +47,7 @@ services:
     image: nanaones/fluentd:0.0.4
     volumes:
       - ./fluentd/fluent.conf:/fluentd/etc/fluent.conf
-      - ../log:/logs
+      - ./log:/logs
     links:
       - "elasticsearch"
     networks:
@@ -83,7 +83,7 @@ services:
       context: .
       dockerfile: ./psycopg-test/dockerfile
     volumes:
-      - ./logs:/logs
+      - ./log:/logs
     depends_on:
       - DB-postgres
 
