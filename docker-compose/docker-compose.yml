@@ -52,11 +52,11 @@ services:
     networks:
       - check-time
 
+
   db-fluentd:
-    image: nanaones/fluentd:0.0.4
-    build: https://github.com/V3ckt0r/fluentd_exporter.git
-      # context: .
-      # Dockerfile: https://github.com/V3ckt0r/fluentd_exporter.git
+    build: 
+      context: .
+      dockerfile: ./fluentd/dockerfile
     volumes:
       - ./fluentd/fluent.conf:/fluentd/etc/fluent.conf
       - ./log:/logs
@@ -97,10 +97,8 @@ services:
       - ./log:/logs
     depends_on:
       - DB-postgres
-
     environment:
-      loop: 1000
-      
+      loop: 100
     networks:
       - check-time
 
