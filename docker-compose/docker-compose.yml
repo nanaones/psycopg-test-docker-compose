@@ -52,7 +52,6 @@ services:
     networks:
       - check-time
 
-
   db-fluentd:
     build: 
       context: .
@@ -72,11 +71,11 @@ services:
     networks:
       - check-time
 
-  DB-postgres:
-    image: postgres:latest
+  db-postgres:
+    image: postgres:12.1-alpine
     restart: always
     volumes:
-      - ./query/:/docker-entrypoint-initdb.d/
+      - ./query/query.sql:/docker-entrypoint-initdb.d/query.sql
     environment: 
       - LC_ALL=C.UTF-8
       - POSTGRES_DB=postgres
@@ -88,6 +87,16 @@ services:
     networks:
       - check-time
 
+  db-postgres-exporter:
+    image: wrouesnel/postgres_exporter:latest
+    restart: always
+    environment: 
+      - DATA_SOURCE_NAME=postgresql://postgres:8015@db-postgres:5432/postgres?sslmode=disable
+    ports: 
+      - "9187:9187"
+    networks:
+      - check-time
+
   python-main:
     # image: nanaones/psycopg-test:0.0.6
     build:
@@ -96,7 +105,7 @@ services:
     volumes:
       - ./log:/logs
     depends_on:
-      - DB-postgres
+      - db-postgres
     environment:
       loop: 100
     networks:
