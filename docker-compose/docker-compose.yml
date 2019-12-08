@@ -80,7 +80,7 @@ services:
       - LC_ALL=C.UTF-8
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=8015
+      - POSTGRES_PASSWORD=1234
       - POSTGRES_PORT=5432
     ports: 
       - "5432:5432" 
@@ -91,7 +91,7 @@ services:
     image: wrouesnel/postgres_exporter:latest
     restart: always
     environment: 
-      - DATA_SOURCE_NAME=postgresql://postgres:8015@db-postgres:5432/postgres?sslmode=disable
+      - DATA_SOURCE_NAME=postgresql://postgres:1234@db-postgres:5432/postgres?sslmode=disable
     ports: 
       - "9187:9187"
     networks:
