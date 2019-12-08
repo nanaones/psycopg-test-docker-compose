@@ -22,7 +22,9 @@
 ## 2. Containers
 1. Python-main  
     - PostgresSQL 컨테이너를 향한 SQL 쿼리 실행
-    - 통신소요시간을 Log파일로 기록한다.
+    - 통신소요시간을 Log파일로서 기록한다.[config 옵션에 따라 `json`, `csv` 확장자 선택가능(기본:`json`)]
+        - log파일 저장 위치:
+            - `./docker-compose/log/`
 2. PostgresSQL   
     - `./docker-compose/query/query.sql`이 초기 쿼리로서 수행된다.
 3. Fluentd  
@@ -36,8 +38,8 @@
 5. Prometheus  
     - exporter 들을 통해 각 container들의 상태를 기록한다.
 6. Grafana
-    - ElasticSearch에 접속하여 ElasticSearch에서 인덱싱해 놓은 결과를 시각화한다.
-    - Prometheus에 접속하여 전체 컨테이너들의 상태를 시각화하여 확인한다.  
+    - ElasticSearch에 연결하여 데이터를 시각화한다.
+    - Prometheus에 접속하여 전체 컨테이너들의 상태 데이터를 시각화한다.  
 6. Prometheus - exporters  
     - Fluentd-exporter 
         - Fluentd 컨테이너가 읽는 상태를 Prometheus에게 보낸다.
@@ -119,6 +121,7 @@ By default,
 --- 
 
 ## 4. How_to_check
-TBD
+TBD  
+
 ## 5. Customize
 TBD
