@@ -1,7 +1,7 @@
 
 -- CREATE DATABASE postgres;
 -- GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;
-CREATE SCHEMA public;
+-- CREATE SCHEMA public;
 CREATE TABLE public.T_TEST
 (
     id SERIAL NOT NULL,
