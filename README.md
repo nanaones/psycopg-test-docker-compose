@@ -5,12 +5,12 @@
 ---
 
 ## Index
- 1. [Requirenment](https://github.com/nanaones/psycopg-test-docker-compose#Requirenment)
- 2. [Containers](https://github.com/nanaones/psycopg-test-docker-compose#Containers)
- 2. [Start](https://github.com/nanaones/psycopg-test-docker-compose#Start)
- 3. [Config](https://github.com/nanaones/psycopg-test-docker-compose#Config)
- 4. [How_to_check](https://github.com/nanaones/psycopg-test-docker-compose#How_to_check)  
- 5. [Customize](https://github.com/nanaones/psycopg-test-docker-compose#Customize)
+ 1. [Requirenment](https://github.com/nanaones/psycopg-test-docker-compose#1-Requirenment)
+ 2. [Containers](https://github.com/nanaones/psycopg-test-docker-compose#2-containers)
+ 3. [Start](https://github.com/nanaones/psycopg-test-docker-compose#3-Start)
+ 4. [Config](https://github.com/nanaones/psycopg-test-docker-compose#4-Config)
+ 5. [How_to_check](https://github.com/nanaones/psycopg-test-docker-compose#5-How_to_check)  
+ 6. [Customize](https://github.com/nanaones/psycopg-test-docker-compose#6-Customize)
 
 
 ---

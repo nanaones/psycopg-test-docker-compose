@@ -26,7 +26,10 @@ services:
       - check-time
 
   db-fluentd:
-    image: nanaones/fluentd:0.0.5
+    # image: nanaones/fluentd:0.0.5
+    build:
+      context: .
+      dockerfile: ./fluentd/dockerfile
     volumes:
       - ./fluentd/fluent.conf:/fluentd/etc/fluent.conf
       - ./log:/logs
@@ -69,7 +72,10 @@ services:
       - check-time
 
   python-main:
-    image: nanaones/psycopg-test:0.0.7
+    # image: nanaones/psycopg-test:0.0.7
+    build:
+      context: .
+      dockerfile: ./psycopg-test/dockerfile
     volumes:
       - ./log:/logs
       - ./psycopg-test/config:/config

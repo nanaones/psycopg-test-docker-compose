@@ -4,7 +4,7 @@ ENV loop 1
 ENV minconn 1
 ENV _log_save_folder_path /logs/
 ENV _log_type json
-ENV CONFIGPATH /psycopg-test/config/config.ini
+ENV CONFIGPATH /run/config.ini
 
 ADD ./psycopg-test/start /run
 ADD ./psycopg-test/config  /run/config
