@@ -89,7 +89,7 @@ You can run this code to output a list of available TimeZones.
 ```python
 import pytz
 
-pytz.all_timezones
+print(pytz.all_timezones)
 ```
 
 By default,   
