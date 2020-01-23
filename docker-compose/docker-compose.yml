@@ -35,6 +35,7 @@ services:
       - ./log:/logs
     ports:
       - "24220:24220"
+
     networks:
       - check-time
 
@@ -79,6 +80,7 @@ services:
     volumes:
       - ./log:/logs
       - ./psycopg-test/config:/config
+
     depends_on:
       - db-postgres
     environment:
