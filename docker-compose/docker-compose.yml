@@ -1,7 +1,7 @@
 version: "3"
 services:
   elasticsearch:
-    image: elasticsearch:7.4.2
+    image: elasticsearch:7.5.2
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
@@ -73,10 +73,10 @@ services:
       - check-time
 
   python-main:
-    # image: nanaones/psycopg-test:0.0.7
-    build:
-      context: .
-      dockerfile: ./psycopg-test/dockerfile
+    image: nanaones/psycopg-test:0.0.7
+    # build:
+    #   context: .
+    #   dockerfile: ./psycopg-test/dockerfile
     volumes:
       - ./log:/logs
       - ./psycopg-test/config:/config
