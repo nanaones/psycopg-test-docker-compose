@@ -21,11 +21,11 @@
 
 ## 2. Containers
 1. Python-main  
-    - PostgresSQL 컨테이너를 향한 SQL 쿼리 실행
+    - PostgreSQL 컨테이너를 향한 SQL 쿼리 실행
     - 통신소요시간을 Log파일로서 기록한다.[config 옵션에 따라 `json`, `csv` 확장자 선택가능(기본:`json`)]
         - log파일 저장 위치:
             - `./docker-compose/log/`
-2. PostgresSQL   
+2. PostgreSQL   
     - `./docker-compose/query/query.sql`이 초기 쿼리로서 수행된다.
 3. Fluentd  
     - `./docker-compose/log/`내의 파일들을 tail 한다.
@@ -45,7 +45,7 @@
         - Fluentd 컨테이너가 읽는 상태를 Prometheus에게 보낸다.
         - Fluentd 컨테이너가 보내는 상태를 Prometheus에게 보낸다. 
         - 컨테이너의 상태를 Prometheus에게 보낸다.
-    - PostgresSQL-exporter 
+    - PostgreSQL-exporter 
         - DB의 상태정보를 Prometheus에게 보낸다.
         - 컨테이너의 상태 정보를 Prometheus에게 보낸다.
 
@@ -101,7 +101,7 @@ By default,
 
 ```json
 
-{"now" : "%Y-%m-%d %H:%M:%s+%Z", "start" : "%Y-%m-%d %H:%M:%s", "end" : "%Y-%m-%d %H:%M:%s", "time" : "%s"} \n
+{"now" : "%Y-%m-%d %H:%M:%S+%Z", "start" : "%Y-%m-%d %H:%M:%S", "end" : "%Y-%m-%d %H:%M:%s", "time" : "%f"} \n
 ```
 
 2. csv
